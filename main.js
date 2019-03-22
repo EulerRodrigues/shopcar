@@ -35,19 +35,28 @@
             init: function init() {
                 this.companyInfo();
                 this.initEvents();
+                this.initEvents2();
             },
 
             initEvents: function initEvents() {
                 $('[data-js="form-register"').on('submit', this.handleSubmit);
             },
-
             handleSubmit: function handleSubmit(event) {
-                console.log('submit');
+                // console.log('submit');
                 event.preventDefault();
                 let $tableCar = $('[data-js="table-car"]').get();
                 $tableCar.appendChild(app.createNewCar());
             },
-
+            initEvents2: function initEvents2() {
+                $('[data-js="btnRemove"').on('click', this.handleSubmit2);
+            },
+            handleSubmit2: function handleSubmit2(event) {
+                // console.log('submit');
+                event.preventDefault();
+                // let $tableCar = $('[data-js="table-car"]').get();
+                // $tableCar.appendChild(app.createNewCar());
+                return alert('V.G.A.B.U.N.D.O.!!!!!')
+            },
             createNewCar: function createNewCar() {
                 let $fragment = document.createDocumentFragment();
                 let $tr = document.createElement('tr');
@@ -57,24 +66,40 @@
                 let $tdYear = document.createElement('td');
                 let $tdPlate = document.createElement('td');
                 let $tdColor = document.createElement('td');
+                let $tdBtn = document.createElement('td');
+                let $btnDelet = document.createElement('button');
 
+     
                 $tdBrand.textContent = $('[data-js="brand-model"]').get().value;
                 $tdYear.textContent = $('[data-js="year"]').get().value;
                 $tdPlate.textContent = $('[data-js="plate"]').get().value;
                 $tdColor.textContent = $('[data-js="color"]').get().value;
+                
 
                 $image.setAttribute('src', $('[data-js="image"]').get().value)
                 $tdImage.appendChild($image);
+
+                // $btnDelet.setAttribute('data-js', 'submit')
+                $tr.setAttribute('data-js', 'trRemove')
+                $btnDelet.setAttribute('data-js', 'btnRemove')
+                // $btnDelet.setAttribute('value', 'submit')
+                $btnDelet.innerHTML = 'Remover - [x]';
+                $tdBtn.appendChild($btnDelet);
 
                 $tr.appendChild($tdImage);
                 $tr.appendChild($tdBrand);
                 $tr.appendChild($tdYear);
                 $tr.appendChild($tdPlate);
                 $tr.appendChild($tdColor);
+                $tr.appendChild($tdBtn);
 
                 return $fragment.appendChild($tr);
             },
 
+
+            minhaFuncao: function minhaFuncao(){
+                return alert('VAGABUNDO!!!!');
+            },
             companyInfo: function companyInfo() {
                 let ajax = new XMLHttpRequest();
                 ajax.open('GET', '/C:/Users/Lucas/Dropbox/course-javascript-ninja/challenges/challenge-29/company.json', true); //O true é para fazer a busca de forma assíncrona.
